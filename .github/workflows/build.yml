@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Baixar projeto
         uses: actions/checkout@v4
@@ -29,11 +28,11 @@ jobs:
 
       - name: Extrair projeto
         run: |
-          unzip -q AstralClient-Fase1-Fonte.zip -d .
-          ls -la AstralClient-Fase1
+          unzip -q AstralClient-0.2.0-Fonte.zip -d .
+          ls -la AstralClient-0.2.0
 
       - name: Compilar Astral
-        working-directory: AstralClient-Fase1
+        working-directory: AstralClient-0.2.0
         run: |
           gradle setupDecompWorkspace
           gradle build --no-daemon
@@ -41,6 +40,6 @@ jobs:
       - name: Salvar JAR
         uses: actions/upload-artifact@v4
         with:
-          name: AstralClient-Fase1
-          path: AstralClient-Fase1/build/libs/*.jar
+          name: AstralClient-0.2.0
+          path: AstralClient-0.2.0/build/libs/*.jar
           
