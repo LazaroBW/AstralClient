@@ -1,5 +1,4 @@
-
-name: Build Astral Client
+name: Build Astral Client 0.3.0
 
 on:
   workflow_dispatch:
@@ -14,32 +13,26 @@ jobs:
     steps:
       - name: Baixar projeto
         uses: actions/checkout@v4
-
       - name: Preparar Java 8
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '8'
-
       - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '2.14.1'
-
       - name: Extrair projeto
         run: |
-          unzip -q AstralClient-0.2.0-Fonte.zip -d .
-          ls -la AstralClient-0.2.0
-
+          unzip -q AstralClient-0.3.0-Fonte.zip -d .
+          ls -la AstralClient-0.3.0
       - name: Compilar Astral
-        working-directory: AstralClient-0.2.0
+        working-directory: AstralClient-0.3.0
         run: |
           gradle setupDecompWorkspace
           gradle build --no-daemon
-
       - name: Salvar JAR
         uses: actions/upload-artifact@v4
         with:
-          name: AstralClient-0.2.0
-          path: AstralClient-0.2.0/build/libs/*.jar
-          
+          name: AstralClient-0.3.0
+          path: AstralClient-0.3.0/build/libs/*.jar
